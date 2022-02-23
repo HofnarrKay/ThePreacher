@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/UI/Enemys.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/UI/PortraitSockets/CharacterVisualizer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Enemies/Enemykeeper.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/EnemyVisualizer.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/UI/PortraitSockets/VisualizerSocket.gd" type="Script" id=5]
+
+[node name="ChasingEnemies" type="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_right = 0.00012207
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemykeeper" type="Node" parent="." groups=[
+"newTurn",
+]]
+script = ExtResource( 3 )
+
+[node name="EnemyVisualizer" type="Control" parent="." groups=[
+"newTurn",
+]]
+margin_top = -300.0
+margin_right = 40.0
+margin_bottom = -260.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BishopSlot" type="Control" parent="EnemyVisualizer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+characterVisualizer = ExtResource( 2 )
+standardImageInformation = {
+"position": Vector2( 0, 0 ),
+"size": Vector2( 200, 300 )
+}
+nonPrimarySize = Vector2( 200, 100 )
+
+[node name="UpcomingEvents" type="Control" parent="EnemyVisualizer"]
+margin_top = -550.0
+margin_right = 40.0
+margin_bottom = -510.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+characterVisualizer = ExtResource( 2 )
+standardImageInformation = {
+"position": Vector2( 0, 0 ),
+"size": Vector2( 200, 300 )
+}
+nonPrimarySize = Vector2( 200, 100 )

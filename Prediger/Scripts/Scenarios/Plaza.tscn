@@ -1,0 +1,248 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Scripts/Scenarios/SceneInfrastructure.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Decisions/DecisionSocket.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Decisions/additiveDecision.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Benedikt und nicht Protagonist sitzen vor Kathedrale (Groß 2).png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Decisions/SceneRequirementFlatStats.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Scenarios/Beggar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Decisions/SceneInstancerDecision.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Decisions/PlayerDeathDecision.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Attributes/crystaline.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Attributes/holy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Attributes/pacifist.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Attributes/militaristic.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/Attributes/follower.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprites/temporaryBishop.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/Attributes/authoritarian.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/Attributes/exoteric.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scripts/Attributes/mercantile.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scripts/Decisions/addChasingEnemyDecision.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scripts/Enemies/EnemyTypes/FollowingEnemies/ConfusingFollower.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Sprites/Enemies/TemporaryEnemy.png" type="Texture" id=20]
+[ext_resource path="res://ImageScenes/BenediktSittingInfrontOfCathedral.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scripts/Attributes/esoteric.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scripts/Attributes/cynical.tscn" type="PackedScene" id=23]
+
+[node name="Spatial" type="Node"]
+script = ExtResource( 1 )
+
+[node name="DecisionSocket" parent="." instance=ExtResource( 2 )]
+viewportScene = ExtResource( 21 )
+image = ExtResource( 4 )
+focusPoint = {
+"x": -642,
+"y": -492
+}
+focusPointExpand = {
+"x": 0.1,
+"y": 0.3
+}
+
+[node name="additiveDecision" parent="DecisionSocket" instance=ExtResource( 3 )]
+image = ExtResource( 4 )
+focusPoint = {
+"x": 754,
+"y": -220
+}
+focusPointExpand = {
+"x": 0.8,
+"y": 0.2
+}
+text = {
+"english": "",
+"german": "Die Kirche infiltrieren òwó"
+}
+
+[node name="crystaline" parent="DecisionSocket/additiveDecision" instance=ExtResource( 9 )]
+value = 7
+
+[node name="pacifist" parent="DecisionSocket/additiveDecision" instance=ExtResource( 11 )]
+value = 4
+
+[node name="SceneInstancerDecision" parent="DecisionSocket/additiveDecision" instance=ExtResource( 7 )]
+scene = ExtResource( 6 )
+
+[node name="additiveDecision2" parent="DecisionSocket" instance=ExtResource( 3 )]
+image = ExtResource( 4 )
+focusPoint = {
+"x": -1012,
+"y": 110
+}
+focusPointExpand = {
+"x": 0.05,
+"y": 1.0
+}
+text = {
+"english": "",
+"german": "Irgendeine dumme Blume anstarren"
+}
+
+[node name="follower" parent="DecisionSocket/additiveDecision2" instance=ExtResource( 13 )]
+value = 3
+
+[node name="holy" parent="DecisionSocket/additiveDecision2" instance=ExtResource( 10 )]
+value = 6
+
+[node name="militaristic" parent="DecisionSocket/additiveDecision2" instance=ExtResource( 12 )]
+value = 4
+
+[node name="additiveDecision3" parent="DecisionSocket" instance=ExtResource( 3 )]
+image = ExtResource( 4 )
+focusPoint = {
+"x": 370,
+"y": -800
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.0
+}
+text = {
+"english": "",
+"german": "Als Statue larpen @w@"
+}
+
+[node name="holy" parent="DecisionSocket/additiveDecision3" instance=ExtResource( 10 )]
+value = 2
+
+[node name="additiveDecision" parent="DecisionSocket/additiveDecision3" instance=ExtResource( 3 )]
+focusPoint = {
+"x": 0,
+"y": 0
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+
+[node name="additiveDecision4" parent="DecisionSocket" instance=ExtResource( 3 )]
+image = ExtResource( 4 )
+focusPoint = {
+"x": 130,
+"y": -260
+}
+focusPointExpand = {
+"x": 0.7,
+"y": 0.3
+}
+
+[node name="additiveDecision" parent="DecisionSocket/additiveDecision4" instance=ExtResource( 3 )]
+focusPoint = {
+"x": 0,
+"y": 0
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+
+[node name="cynical" parent="DecisionSocket/additiveDecision4/additiveDecision" instance=ExtResource( 23 )]
+value = 3
+
+[node name="esoteric" parent="DecisionSocket/additiveDecision4/additiveDecision" instance=ExtResource( 22 )]
+value = 5
+
+[node name="mercantile" parent="DecisionSocket/additiveDecision4/additiveDecision" instance=ExtResource( 17 )]
+value = 2
+
+[node name="additiveDecision5" parent="DecisionSocket" instance=ExtResource( 3 )]
+image = ExtResource( 4 )
+focusPoint = {
+"x": 130,
+"y": -260
+}
+focusPointExpand = {
+"x": 0.7,
+"y": 0.3
+}
+text = {
+"english": "",
+"german": ""
+}
+
+[node name="PlayerDeathDecision" parent="DecisionSocket/additiveDecision5" instance=ExtResource( 8 )]
+focusPoint = {
+"x": 0,
+"y": 0
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+text = {
+"english": "",
+"german": ""
+}
+
+[node name="SceneRequirementFlatStats" parent="DecisionSocket" instance=ExtResource( 5 )]
+
+[node name="holy" parent="DecisionSocket/SceneRequirementFlatStats" instance=ExtResource( 10 )]
+value = 5
+
+[node name="additiveDecision" parent="DecisionSocket/SceneRequirementFlatStats" instance=ExtResource( 3 )]
+focusPoint = {
+"x": 0,
+"y": 0
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+
+[node name="SceneRequirementFlatStats2" parent="DecisionSocket" instance=ExtResource( 5 )]
+image = ExtResource( 14 )
+focusPoint = {
+"x": 0,
+"y": -100
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.3
+}
+text = {
+"english": "",
+"german": ""
+}
+
+[node name="additiveDecision" parent="DecisionSocket/SceneRequirementFlatStats2" instance=ExtResource( 3 )]
+image = ExtResource( 14 )
+focusPoint = {
+"x": -90,
+"y": -200
+}
+focusPointExpand = {
+"x": 0.3,
+"y": 0.3
+}
+text = {
+"english": "",
+"german": ""
+}
+
+[node name="authoritarian" parent="DecisionSocket/SceneRequirementFlatStats2/additiveDecision" instance=ExtResource( 15 )]
+value = 3
+
+[node name="exoteric" parent="DecisionSocket/SceneRequirementFlatStats2/additiveDecision" instance=ExtResource( 16 )]
+value = 10
+
+[node name="mercantile" parent="DecisionSocket/SceneRequirementFlatStats2/additiveDecision" instance=ExtResource( 17 )]
+value = 5
+
+[node name="addChasingEnemyDecision" parent="DecisionSocket/SceneRequirementFlatStats2/additiveDecision" instance=ExtResource( 18 )]
+image = ExtResource( 20 )
+enemyScene = ExtResource( 19 )
+chaseTime = 5
+
+[node name="additiveDecision6" parent="DecisionSocket" instance=ExtResource( 3 )]
+focusPoint = {
+"x": 0,
+"y": 0
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+
+[node name="militaristic" parent="DecisionSocket/additiveDecision6" instance=ExtResource( 12 )]
+
+[node name="PlayerDeathDecision" parent="DecisionSocket/additiveDecision6" instance=ExtResource( 8 )]

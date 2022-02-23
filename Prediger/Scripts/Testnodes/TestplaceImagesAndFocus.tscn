@@ -1,0 +1,22 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/Fechter.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Benedikt und nicht Protagonist sitzen vor Kathedrale (Groß 2).png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Benedikt sieht Mentor.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Example.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Follower/PecuniaRepresentative/PecuniaRepresentativeBackground.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Follower/PecuniaRepresentative/PecuniaRepresentative.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="TestplaceImagesAndFocus" type="AnimatedSprite"]
+frames = SubResource( 1 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -640.133, 1527.72 )

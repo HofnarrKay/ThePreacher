@@ -1,0 +1,176 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Scripts/Character/Character.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Character/Modifiers.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Character/CharacterStatsUI.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Character/Followers.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Character/FollowerTab.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Attributes/follower.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Attributes/crystaline.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Attributes/holy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Attributes/money.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Attributes/attributeSocket.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Attributes/pacifist.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/UI/PortraitSockets/CharacterVisualizer.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/Modifier/newTurnReturnsSceneModifier.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/Attributes/militaristic.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scripts/Attributes/authoritarian.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/Attributes/egalitarian.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scripts/Attributes/exoteric.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scripts/Attributes/esoteric.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scripts/Attributes/cynical.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scripts/Attributes/mercantile.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scripts/Attributes/SupportingInfrastructure/attributeSocket.tscn" type="PackedScene" id=21]
+[ext_resource path="res://TechArt/Fonts/DescriptionFont.tres" type="DynamicFont" id=22]
+
+[node name="Player" type="Control" groups=[
+"finishedDecision",
+"newTurn",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+events = [ "plaza" ]
+position = "CityCore"
+
+[node name="attributeSocket" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="follower" parent="attributeSocket" instance=ExtResource( 6 )]
+alwaysAdd = false
+
+[node name="money" parent="attributeSocket" instance=ExtResource( 9 )]
+alwaysAdd = false
+
+[node name="holy" parent="attributeSocket" instance=ExtResource( 8 )]
+
+[node name="crystaline" parent="attributeSocket" instance=ExtResource( 7 )]
+
+[node name="pacifist" parent="attributeSocket" instance=ExtResource( 11 )]
+
+[node name="militaristic" parent="attributeSocket" instance=ExtResource( 14 )]
+
+[node name="authoritarian" parent="attributeSocket" instance=ExtResource( 15 )]
+
+[node name="egalitarian" parent="attributeSocket" instance=ExtResource( 16 )]
+
+[node name="exoteric" parent="attributeSocket" instance=ExtResource( 17 )]
+
+[node name="esoteric" parent="attributeSocket" instance=ExtResource( 18 )]
+
+[node name="mercantile" parent="attributeSocket" instance=ExtResource( 20 )]
+
+[node name="cynical" parent="attributeSocket" instance=ExtResource( 19 )]
+
+[node name="CharacterStatsUI" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 22 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Modifiers" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="newTurnReturnsSceneModifier" parent="Modifiers" instance=ExtResource( 13 )]
+keyAttributes = [ "newTur" ]
+
+[node name="Followers" type="Node" parent="."]
+script = ExtResource( 4 )
+bonusMarginForRandomizedFollower = 3
+
+[node name="unspecificFollowers" type="Node" parent="Followers"]
+
+[node name="attributeSocket" parent="Followers/unspecificFollowers" instance=ExtResource( 21 )]
+
+[node name="authoritarian" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 15 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="egalitarian" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 16 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="mercantile" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 20 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="cynical" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 19 )]
+lowestPossibleValue = 0
+highestPossibleValue = 999
+
+[node name="holy" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 8 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="crystaline" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 7 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="esoteric" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 18 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="exoteric" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 17 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="militaristic" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 14 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="pacifist" parent="Followers/unspecificFollowers/attributeSocket" instance=ExtResource( 11 )]
+lowestPossibleValue = 0
+highestPossibleValue = 9999
+
+[node name="specialFollowers" type="Node" parent="Followers"]
+
+[node name="FollowerUI" type="Control" parent="Followers"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.00012207
+mouse_filter = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FollowerSlot" type="Control" parent="Followers/FollowerUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -300.0
+margin_right = 235.0
+margin_bottom = -271.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterVisualizer" parent="Followers/FollowerUI/FollowerSlot" instance=ExtResource( 12 )]
+
+[node name="TurnCount" type="Label" parent="."]
+margin_left = 2.82843
+margin_top = 291.328
+margin_right = 42.8284
+margin_bottom = 305.328
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="addedValue" from="attributeSocket/follower" to="Followers" method="followerChange"]
+[connection signal="pointOverload" from="attributeSocket/holy" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/crystaline" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/pacifist" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/militaristic" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/authoritarian" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/egalitarian" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/exoteric" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/esoteric" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/mercantile" to="Followers" method="beliefExtremism"]
+[connection signal="pointOverload" from="attributeSocket/cynical" to="Followers" method="beliefExtremism"]
+[connection signal="leavingFollower" from="Followers" to="attributeSocket/follower" method="addValue"]

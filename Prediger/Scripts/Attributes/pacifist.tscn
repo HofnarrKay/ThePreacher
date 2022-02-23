@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Attributes/attributes.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Icons/pacifist.png" type="Texture" id=2]
+
+[node name="pacifist" type="Node"]
+script = ExtResource( 1 )
+attribute = "pacifist"
+opposition = "militaristic"
+texture = ExtResource( 2 )
+feedbackImportance = 5
+lowestPossibleValue = -10
+highestPossibleValue = 10

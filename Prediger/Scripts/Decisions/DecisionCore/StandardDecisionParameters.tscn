@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Decisions/DecisionCore/StandardDecisionParameters.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Testnodes/basicPicture.tscn" type="PackedScene" id=2]
+
+[node name="StandardDecisionParameters" type="Node"]
+script = ExtResource( 1 )
+viewportScene = ExtResource( 2 )

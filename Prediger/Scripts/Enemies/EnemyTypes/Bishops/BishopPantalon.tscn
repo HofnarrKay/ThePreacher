@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Sprites/Example.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Benedikt sieht Mentor.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Fechter.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Enemies/BishopFoundation.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Decisions/requirementDecision.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Decisions/DecisionSocket.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Decisions/additiveDecision.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Decisions/EnemyDefeatDecision.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Decisions/PlayerDeathDecision.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Attributes/holy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Sprites/Enemies/BishopPantalon.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/Decisions/SingleEventTimeIncreaseDecision.tscn" type="PackedScene" id=12]
+
+[node name="bishop" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+enemyType = "bishop"
+texture = ExtResource( 11 )
+
+[node name="DecisionSocket" parent="." instance=ExtResource( 6 )]
+image = ExtResource( 11 )
+focusPoint = {
+"x": 30,
+"y": -350
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.1
+}
+
+[node name="PlainRequirementDecision" parent="DecisionSocket" instance=ExtResource( 5 )]
+image = ExtResource( 3 )
+
+[node name="EnemyDefeatDecision" parent="DecisionSocket/PlainRequirementDecision" instance=ExtResource( 8 )]
+
+[node name="holy" parent="DecisionSocket/PlainRequirementDecision" instance=ExtResource( 10 )]
+value = 5
+
+[node name="additiveDecision" parent="DecisionSocket" instance=ExtResource( 7 )]
+image = ExtResource( 2 )
+focusPoint = {
+"x": -65,
+"y": -390
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.0
+}
+
+[node name="SingleEventTimeIncreaseDecision" parent="DecisionSocket/additiveDecision" instance=ExtResource( 12 )]
+time = 10
+
+[node name="PlayerDeathDecision" parent="DecisionSocket" instance=ExtResource( 9 )]
+image = ExtResource( 1 )
+focusPoint = {
+"x": 20,
+"y": -97
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+
+[connection signal="defeated" from="DecisionSocket/PlainRequirementDecision/EnemyDefeatDecision" to="." method="defeated"]
+[connection signal="timeIncrease" from="DecisionSocket/additiveDecision/SingleEventTimeIncreaseDecision" to="." method="addChaseTime"]

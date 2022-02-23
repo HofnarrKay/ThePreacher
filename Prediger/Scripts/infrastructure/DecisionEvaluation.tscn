@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/infrastructure/Decision.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/UI/DecisionButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Decisions/DecisionButtons.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/DecisionOverviewButton.tscn" type="PackedScene" id=4]
+
+[node name="DecisionEvaluation" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_right = 8.0
+margin_bottom = 720.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+buttonScene = ExtResource( 4 )
+highlightedColour = Color( 1, 1, 1, 1 )
+darkenedColour = Color( 0.764706, 0.694118, 0.741176, 1 )
+
+[node name="DecisionButtons" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -4.0
+margin_right = -4.0
+margin_bottom = 719.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+buttonScene = ExtResource( 2 )
+[connection signal="clearedDecision" from="DecisionButtons" to="." method="_on_DecisionButtons_clearedDecision"]

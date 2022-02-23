@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Decisions/additiveDecision.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Icons/impossible.png" type="Texture" id=2]
+
+[node name="additiveDecision" type="Node"]
+script = ExtResource( 1 )
+focusPoint = {
+"x": 0,
+"y": 0
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+texture = ExtResource( 2 )

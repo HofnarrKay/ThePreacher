@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/infrastructure/DecisionEvaluation.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/UI/World.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Character/Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Enemies/ChasingEnemys.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/infrastructure/Scenes.gd" type="Script" id=5]
+
+[node name="World" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." groups=[
+"Player",
+] instance=ExtResource( 3 )]
+mouse_filter = 1
+
+[node name="Decision" parent="." instance=ExtResource( 1 )]
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_right = 2.0
+margin_bottom = 0.0
+grow_horizontal = 2
+
+[node name="ChasingEnemies" parent="." instance=ExtResource( 4 )]
+
+[node name="Scenes" type="Node" parent="." groups=[
+"sceneRoot",
+]]
+script = ExtResource( 5 )
+[connection signal="addEnemy" from="Player" to="ChasingEnemies" method="addEnemy"]
+[connection signal="movement" from="Player" to="." method="_on_Player_movement"]
+[connection signal="initiateDecision" from="ChasingEnemies" to="." method="decisionCreation"]
+[connection signal="initiateDecision" from="Scenes" to="." method="decisionCreation"]

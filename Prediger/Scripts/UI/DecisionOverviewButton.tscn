@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/UI/DecisionOverviewButton.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Example.png" type="Texture" id=3]
+[ext_resource path="res://TechArt/Shader/BlackFade.shader" type="Shader" id=4]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 4 )
+
+[node name="DecisionOverviewButton" type="TextureButton" groups=[
+"canvasAdjusting",
+]]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+mouse_filter = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+borderSpace = {
+"x": 250,
+"y": 0
+}
+heightPercentage = 1.0
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1920, 1080 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 32, 32 )
+texture = SubResource( 1 )
+
+[node name="BlackFade" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 3 )
+[connection signal="mouse_entered" from="." to="." method="_on_DecisionOverviewButton_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_DecisionOverviewButton_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_DecisionOverviewButton_pressed"]

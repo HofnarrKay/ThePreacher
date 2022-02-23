@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Scenarios/SceneInfrastructure.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Decisions/DecisionSocket.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Pictures/Heide und Benedikt.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/TemporaryFollower.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Decisions/additiveDecision.tscn" type="PackedScene" id=5]
+
+[node name="Slavemarket" type="Node"]
+script = ExtResource( 1 )
+
+[node name="DecisionSocket" parent="." instance=ExtResource( 2 )]
+image = ExtResource( 3 )
+focusPoint = {
+"x": 0,
+"y": -200
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}
+
+[node name="additiveDecision" parent="DecisionSocket" instance=ExtResource( 5 )]
+image = ExtResource( 4 )
+focusPoint = {
+"x": 0,
+"y": 0
+}
+focusPointExpand = {
+"x": 0.5,
+"y": 0.5
+}

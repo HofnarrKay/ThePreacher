@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/UI/DecisionButton.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Example.png" type="Texture" id=2]
+[ext_resource path="res://TechArt/Materials/BlackFade.tres" type="Material" id=3]
+[ext_resource path="res://Scripts/UI/AttributeVisualizer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TechArt/Fonts/DescriptionFont.tres" type="DynamicFont" id=5]
+
+[node name="DecisionButton" type="TextureButton" groups=[
+"canvasAdjusting",
+]]
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+highlightedColour = Color( 1, 1, 1, 1 )
+darkenedColour = Color( 0.764706, 0.694118, 0.741176, 1 )
+borderSpace = {
+"x": 350,
+"y": -100
+}
+heightPercentage = 0.65
+buttonSpacing = 30
+hoverHeightPercentage = 0.45
+speedHoveringAnimationRising = 12.0
+speedHoveringAnimationFalling = 4.0
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 50, 50 )
+
+[node name="BlackFade" type="Sprite" parent="."]
+material = ExtResource( 3 )
+texture = ExtResource( 2 )
+
+[node name="Text" type="Label" parent="."]
+margin_right = 270.0
+margin_bottom = 63.0
+size_flags_horizontal = 9
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 5 )
+text = "Benedikt war hier UwU"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AttributeVisualizer" parent="." instance=ExtResource( 4 )]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="." to="." method="_on_DecisionButton_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_DecisionButton_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_DecisionButton_pressed"]
+[connection signal="tree_exiting" from="." to="." method="_on_DecisionButton_tree_exiting"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/Follower/Krispin.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UI/AttributeVisualizer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/UI/PortraitSockets/CharacterVisualizer.gd" type="Script" id=3]
+
+[node name="CharacterVisualizer" type="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1670.0
+margin_bottom = -730.0
+rect_pivot_offset = Vector2( 125, 350 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 130.108, 206.475 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 48, 29, 600, 800 )
+
+[node name="AttributeVisualizer" parent="." instance=ExtResource( 2 )]
+margin_left = -24.0416
+margin_top = 12.7279
+margin_right = 25.9584
+margin_bottom = 1212.73
+
+[node name="Timer" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
